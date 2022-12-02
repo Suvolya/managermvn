@@ -35,7 +35,7 @@ public class MovieManagerTest {
     }
 
     @Test
-    public void findeMovieDeforLimit() {
+    public void findeMovieBeforLimit() {
         MovieManager manager = new MovieManager();
 
         manager.addMovie("Film I");
@@ -95,6 +95,24 @@ public class MovieManagerTest {
 
         String[] actual = manager.findeLast();
         String[] expected = {"Film XI", "Film X", "Film IX", "Film VIII", "Film VII", "Film VI", "Film V", "Film IV", "Film III", "Film II"};
+
+        Assertions.assertArrayEquals(expected, actual);
+
+    }
+
+    @Test
+    public void findeMovieLimitParametr() {
+        MovieManager manager = new MovieManager(5);
+
+        manager.addMovie("Film I");
+        manager.addMovie("Film II");
+        manager.addMovie("Film III");
+        manager.addMovie("Film IV");
+        manager.addMovie("Film V");
+
+
+        String[] actual = manager.findeAll();
+        String[] expected = {"Film I", "Film II", "Film III", "Film IV", "Film V"};
 
         Assertions.assertArrayEquals(expected, actual);
 
